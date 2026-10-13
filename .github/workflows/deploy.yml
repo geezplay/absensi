@@ -25,4 +25,4 @@ jobs:
             cd ${{ secrets.VPS_APP_DIR }}
             git fetch origin main
             git reset --hard origin/main
-            bash scripts/deploy.sh
+            sudo ./deploy.sh --update
