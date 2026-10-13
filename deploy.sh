@@ -175,6 +175,9 @@ deploy_app() {
   step "Deploy aplikasi Laravel"
   cd "${APP_DIR}"
 
+  # Pastikan www-data bisa menulis (vendor/node_modules/.env) sebelum build
+  chown -R "${APP_USER}:${APP_USER}" "${APP_DIR}"
+
   sudo -u "${APP_USER}" composer install --no-dev --optimize-autoloader --no-interaction
   sudo -u "${APP_USER}" npm ci || sudo -u "${APP_USER}" npm install
   sudo -u "${APP_USER}" npm run build
